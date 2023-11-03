@@ -1,7 +1,6 @@
-Cipher 1: AES-128
-Cipher 2: Camellia-128
-Cipher 3: Aria-128
-Cipher 4: seed
+# Homework 2 - Enc/Dec comparison
+## Chosen ciphers:
+**AES-128**, **Camellia-128**, **Aria-128**, **Seed**
 
-Mode 1: CBC
-Mode 2: OFB
+## Chosen modes:
+**CBC**, **OFB**
