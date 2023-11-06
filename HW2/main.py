@@ -1,7 +1,7 @@
 import subprocess
 
 
-ciphers=["aes-128-cbc", "aes-128-ofb", "camellia-128-cbc", "camellia-128-ofb", "aria-128-cbc", "aria-128-ofb", "seed-cbc", "seed-ofb"]
+ciphers=["aes-128-cbc", "aes-128-ofb", "aes-256-cbc", "aes-256-ofb", "camellia-128-cbc", "camellia-128-ofb", "aria-128-cbc", "aria-128-ofb"]
 
 #Global variable password (same for all)
 result=subprocess.run(["./passgen.sh"], stdout=subprocess.PIPE)
@@ -35,7 +35,7 @@ def encDec(cipher):
 		for i in range(0, 500):
 			tmp=measureTime(cipher, password)
 			tmp_e=tmp_e+tmp[0]
-			tmp_d=tmp_d+tmp[0]
+			tmp_d=tmp_d+tmp[1]
 			
 			time = time + tmp[0] + tmp[1]
 			time= (float(f'{time:.4f}'))
@@ -45,7 +45,7 @@ def encDec(cipher):
 			average.write(str(i)+" "+str(time/(i+1))+"\n")
 			data.write(str(i)+" "+str(time)+"\n")
 		
-	print(cipher+" completed!")
+	print(cipher+" completed! Time: "+str(time))
 
 for i in ciphers:
 	encDec(i)

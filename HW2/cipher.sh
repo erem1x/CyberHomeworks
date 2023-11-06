@@ -17,9 +17,19 @@ file_out="text.enc"
 if [ $2 == "d" ] ; then
   file_in="text.enc"
   file_out="textd.txt"
+  if [ -e textd.txt ] ; then
+    rm textd.txt
+  fi
 fi
 
-tmp="openssl enc -$1 -$2 -pbkdf2 -in $file_in -out $file_out -pass pass:$3"
-time sh -c $tmp 2> >(grep "real" | awk '{print $2}' >&2)
+if [ $2 == "e" ] ; then
+  if [ -e text.enc ] ; then
+    rm text.enc
+  fi
+fi
+
+
+
+time openssl enc -$1 -$2 -pbkdf2 -in $file_in -out $file_out -pass pass:$3 2> >(grep "real" | awk '{print $2}' >&2) 
 
 
